@@ -5,6 +5,7 @@ from colorama import Fore, Style
 from pprint import pprint
 from google.oauth2.service_account import Credentials
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -24,5 +25,14 @@ pprint(data1)
 
 
 def introduction():
-    BigBanner = pyfiglet.figlet_format("Bookkeeping service!!")
-    print(Fore.YELLOW + Style.BRIGHT + BigBanner)
+    big_banner = pyfiglet.figlet_format("Bookkeeping Service!!")
+    print(Fore.YELLOW + Style.BRIGHT + big_banner)
+    # print(Style.RESET_ALL)
+    print("Welcome to the Bookkeeping Service. We are glad you are here.\n")
+    print("This service was built to allow people to share their books.\n")
+    print("We have a collection of books for you to check-out, " +
+          "if you just want a book to read.\n")
+    print("We hope this service can be of use to you.")
+
+
+introduction()
