@@ -1,5 +1,7 @@
 
 import gspread
+import pyfiglet
+from colorama import Fore, Style
 from pprint import pprint
 from google.oauth2.service_account import Credentials
 
@@ -19,3 +21,8 @@ data = book.get_all_values()
 data1 = data[1:]
 
 pprint(data1)
+
+
+def introduction():
+    BigBanner = pyfiglet.figlet_format("Bookkeeping service!!")
+    print(Fore.YELLOW + Style.BRIGHT + BigBanner)
