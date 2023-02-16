@@ -32,7 +32,19 @@ def introduction():
     print("This service was built to allow people to share their books.\n")
     print("We have a collection of books for you to check-out, " +
           "if you just want a book to read.\n")
-    print("We hope this service can be of use to you.")
+    print("We hope this service can be of use to you.\n")
+
+
+def user_input():
+    while True:
+        name = input("What is your name(at least 3 characters): ").lower()
+
+        if len(name) < 3:
+            print("\nA minimum of three character is required. "
+                  "Please try again.")
+            continue
+        return name
 
 
 introduction()
+user_input()
