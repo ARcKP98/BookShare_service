@@ -37,14 +37,21 @@ def introduction():
 
 def user_input():
     while True:
-        name = input("What is your name(at least 3 characters): ").lower()
+        name = input("What is your name(at least 3 characters): ").capitalize()
 
         if len(name) < 3:
-            print("\nA minimum of three character is required. "
+            print("\nA minimum of three character is required(EG: Tim)."
                   "Please try again.")
             continue
         return name
 
 
+def purpose():
+    print(f"\n Hi {person}. What would you like to do?")
+    print("\n 1. Check out our books. \
+        \n 2. Donate a Book.")
+
+
 introduction()
-user_input()
+person = user_input()
+purpose()
