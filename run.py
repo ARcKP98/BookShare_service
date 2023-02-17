@@ -43,6 +43,9 @@ def user_input():
             print("\nA minimum of three character is required(EG: Tim)."
                   "Please try again.")
             continue
+        elif name.isdigit():
+            print("You have a number in your name. Please enter your name.")
+            continue
         return name
 
 
