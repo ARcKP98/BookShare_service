@@ -24,6 +24,13 @@ data1 = data[1:]
 pprint(data1)
 
 
+def show_books():
+    print("To view our collection, pick a genre: \
+        \n 1. Science Fiction \
+        \n 2. Biographies \
+        \n 3. Self-Help")
+
+
 def introduction():
     big_banner = pyfiglet.figlet_format("Bookkeeping Service!!")
     print(Fore.YELLOW + Style.BRIGHT + big_banner)
@@ -53,6 +60,15 @@ def purpose(user_input):
     print(f"\n Hi {user_input}. What would you like to do?")
     print("\n 1. Check out our books. \
         \n 2. Donate a Book.\n")
+    choice = int(input("\n Make your choice: "))
+
+    if choice == 1:
+        print("You would like to see our collection.")
+        show_books()
+    elif choice == 2:
+        print("You would like to donate a book. How nice!")
+    else:
+        print("Please enter a number/")
 
 
 def main():
