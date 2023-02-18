@@ -49,12 +49,15 @@ def user_input():
         return name
 
 
-def purpose():
-    print(f"\n Hi {person}. What would you like to do?")
+def purpose(user_input):
+    print(f"\n Hi {user_input}. What would you like to do?")
     print("\n 1. Check out our books. \
-        \n 2. Donate a Book.")
+        \n 2. Donate a Book.\n")
 
 
-introduction()
-person = user_input()
-purpose()
+def main():
+    introduction()
+    purpose(user_input())
+
+
+main()
