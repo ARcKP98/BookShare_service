@@ -24,13 +24,6 @@ data1 = data[1:]
 pprint(data1)
 
 
-def show_books():
-    print("To view our collection, pick a genre: \
-        \n 1. Science Fiction \
-        \n 2. Biographies \
-        \n 3. Self-Help")
-
-
 def introduction():
     big_banner = pyfiglet.figlet_format("Bookkeeping Service!!")
     print(Fore.YELLOW + Style.BRIGHT + big_banner)
@@ -76,6 +69,36 @@ def purpose(user_input):
         except ValueError:
             print("\n Not a number")
             continue
+
+
+def show_books():
+    print("To view our collection, pick a genre: \
+        \n 1. Science Fiction \
+        \n 2. Biographies \
+        \n 3. Self-Help")
+    while True:
+        try:
+            choice = choice = int(input("\n Make your choice: "))
+            if choice == 1:
+                print("Loading.......")
+                print("\n Here are our Science Fiction titles:")
+
+                break
+            if choice == 2:
+                print("Loading.......")
+                print("Here are our biographical titles:")
+
+                break
+            if choice == 3:
+                print("Loading.......")
+                print("\nHere are our Self-Help titles:")
+
+                break
+            else:
+                print("Please pick from one of the options provided.")
+                continue
+        except ValueError:
+            print("Please enter a number.")
 
 
 def main():
