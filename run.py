@@ -70,6 +70,9 @@ def purpose(user_input):
             elif choice == 2:
                 print("\n You would like to donate a book. How nice!")
                 break
+            elif choice:
+                print("\n Enter a number from the given options.")
+                continue
         except ValueError:
             print("\n Not a number")
             continue
