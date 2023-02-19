@@ -60,15 +60,19 @@ def purpose(user_input):
     print(f"\n Hi {user_input}. What would you like to do?")
     print("\n 1. Check out our books. \
         \n 2. Donate a Book.\n")
-    choice = int(input("\n Make your choice: "))
-
-    if choice == 1:
-        print("You would like to see our collection.")
-        show_books()
-    elif choice == 2:
-        print("You would like to donate a book. How nice!")
-    else:
-        print("Please enter a number/")
+    while True:
+        try:
+            choice = int(input("\n Make your choice: "))
+            if choice == 1:
+                print("\n You would like to see our collection.")
+                show_books()
+                break
+            elif choice == 2:
+                print("\n You would like to donate a book. How nice!")
+                break
+        except ValueError:
+            print("\n Not a number")
+            continue
 
 
 def main():
