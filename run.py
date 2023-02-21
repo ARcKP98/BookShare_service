@@ -2,6 +2,7 @@
 import gspread
 import pyfiglet
 from colorama import Fore, Style
+import pandas as pd
 from pprint import pprint
 from google.oauth2.service_account import Credentials
 
@@ -38,7 +39,6 @@ def introduction():
 def user_input():
     while True:
         name = input("What is your name(at least 3 characters): ").capitalize()
-
         if len(name) < 3:
             print("\nA minimum of three character is required(EG: Tim)."
                   "Please try again.")
@@ -47,6 +47,12 @@ def user_input():
             print("You have a number in your name. Please enter your name.")
             continue
         return name
+
+
+# def display_shot(show_books):
+#     gen1 = SHEET.worksheet('sci-fi').get_all_values()
+#     data = pd.DataFrame(gen1)
+#     print(data)
 
 
 def purpose(user_input):
@@ -82,12 +88,24 @@ def show_books():
             if choice == 1:
                 print("Loading.......")
                 print("\n Here are our Science Fiction titles:")
+                gen1 = SHEET.worksheet('sci-fi').get('B1:C6')
+                data = pd.DataFrame(gen1)
+                print(data.to_string(index=False, header=False))
+                # gen1 = SHEET.worksheet('sci-fi')
+                # # data1 = gen1[1:4]
+                # print(gen1)
 
                 break
             if choice == 2:
                 print("Loading.......")
                 print("Here are our biographical titles:")
-
+                gen1 = SHEET.worksheet('Biographies').get_all_values()
+                for col in gen1:
+                    for row in col:
+                        print(str(row).rjust(50), end="")
+                        print("")
+                # data = pd.DataFrame(gen1)
+                # print(data)
                 break
             if choice == 3:
                 print("Loading.......")
@@ -99,11 +117,13 @@ def show_books():
                 continue
         except ValueError:
             print("Please enter a number.")
+    return choice
 
 
 def main():
     introduction()
     purpose(user_input())
+    # display_shot(show_books())
 
 
 main()
