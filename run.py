@@ -87,29 +87,34 @@ def show_books():
             choice = choice = int(input("\n Make your choice: "))
             if choice == 1:
                 print("Loading.......")
-                print("\n Here are our Science Fiction titles:")
-                gen1 = SHEET.worksheet('sci-fi').get('B1:C6')
+                print("\n Here are our Science Fiction titles:\n")
+                gen1 = SHEET.worksheet('sci-fi').get('B:C')
                 data = pd.DataFrame(gen1)
                 print(data.to_string(index=False, header=False))
                 # gen1 = SHEET.worksheet('sci-fi')
                 # # data1 = gen1[1:4]
                 # print(gen1)
-
                 break
             if choice == 2:
                 print("Loading.......")
                 print("Here are our biographical titles:")
-                gen1 = SHEET.worksheet('Biographies').get_all_values()
-                for col in gen1:
-                    for row in col:
-                        print(str(row).rjust(50), end="")
-                        print("")
+                gen2 = SHEET.worksheet('Biographies').get('B:C')
+                data = pd.DataFrame(gen2)
+                print(data.to_string(index=False, header=False))
+
+                # for col in gen1:
+                #     for row in col:
+                #         print(str(row).rjust(50), end="")
+                #         print("")
                 # data = pd.DataFrame(gen1)
                 # print(data)
                 break
             if choice == 3:
                 print("Loading.......")
                 print("\nHere are our Self-Help titles:")
+                gen3 = SHEET.worksheet('Self-help').get('B:C')
+                data = pd.DataFrame(gen3)
+                print(data.to_string(index=False, header=False))
 
                 break
             else:
