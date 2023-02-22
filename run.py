@@ -2,7 +2,8 @@
 import gspread
 import pyfiglet
 from colorama import Fore, Style
-import pandas as pd
+# import pandas as pd
+from tabulate import tabulate
 from pprint import pprint
 from google.oauth2.service_account import Credentials
 
@@ -63,11 +64,11 @@ def purpose(user_input):
         try:
             choice = int(input("\n Make your choice: "))
             if choice == 1:
-                print("\n You would like to see our collection.")
+                print("\n You would like to see our collection.\n")
                 show_books()
                 break
             elif choice == 2:
-                print("\n You would like to donate a book. How nice!")
+                print("\n You would like to donate a book. How nice!\n")
                 break
             elif choice:
                 print("\n Enter a number from the given options.")
@@ -88,33 +89,34 @@ def show_books():
             if choice == 1:
                 print("Loading.......")
                 print("\n Here are our Science Fiction titles:\n")
-                gen1 = SHEET.worksheet('sci-fi').get('B:C')
-                data = pd.DataFrame(gen1)
-                print(data.to_string(index=False, header=False))
+                gen1 = SHEET.worksheet('sci-fi').get('A:C')
+                # data = pd.DataFrame(gen1)
+                # print(data.to_string(index=False, header=False))
+                print(tabulate(gen1, headers="firstrow", tablefmt="presto"))
                 # gen1 = SHEET.worksheet('sci-fi')
                 # # data1 = gen1[1:4]
                 # print(gen1)
                 break
             if choice == 2:
                 print("Loading.......")
-                print("Here are our biographical titles:")
-                gen2 = SHEET.worksheet('Biographies').get('B:C')
-                data = pd.DataFrame(gen2)
-                print(data.to_string(index=False, header=False))
+                print("\nHere are our biographical titles:\n")
+                gen2 = SHEET.worksheet('Biographies').get('A:C')
+                # data = pd.DataFrame(gen2)
+                # print(data.to_string(index=False, header=False))
+                print(tabulate(gen2, headers="firstrow", tablefmt="pretty"))
 
-                # for col in gen1:
+                # for col in gen2:
                 #     for row in col:
                 #         print(str(row).rjust(50), end="")
                 #         print("")
-                # data = pd.DataFrame(gen1)
-                # print(data)
                 break
             if choice == 3:
                 print("Loading.......")
-                print("\nHere are our Self-Help titles:")
-                gen3 = SHEET.worksheet('Self-help').get('B:C')
-                data = pd.DataFrame(gen3)
-                print(data.to_string(index=False, header=False))
+                print("\nHere are our Self-Help titles:\n")
+                gen3 = SHEET.worksheet('Self-help').get('A:C')
+                # data = pd.DataFrame(gen3)
+                # print(data.to_string(index=False, header=False))
+                print(tabulate(gen3, headers="firstrow", tablefmt="pretty"))
 
                 break
             else:
@@ -122,13 +124,12 @@ def show_books():
                 continue
         except ValueError:
             print("Please enter a number.")
-    return choice
-
+    # return choice
+    
 
 def main():
     introduction()
     purpose(user_input())
-    # display_shot(show_books())
-
+   
 
 main()
