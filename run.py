@@ -19,9 +19,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('bookkeeping')
 
-book = SHEET.worksheet('Biographies')
-data = book.get_all_values()
-data1 = data[1:]
+
+# book = SHEET.worksheet('Biographies')
+# data = book.get_all_values()
+# data1 = data[1:3]
 
 pprint(data1)
 
@@ -56,8 +57,8 @@ def user_input():
 #     print(data)
 
 
-def purpose(user_input):
-    print(f"\n Hi {user_input}. What would you like to do?")
+def purpose(name):
+    print(f"\n Hi {name}. What would you like to do?")
     print("\n 1. Check out our books. \
         \n 2. Donate a Book.\n")
     while True:
@@ -76,6 +77,30 @@ def purpose(user_input):
         except ValueError:
             print("\n Not a number")
             continue
+
+
+def checkout():
+    print("\nIf you would like to borrow a book, enter the checkout code.")
+    print("If you don't want to borrow a book and leave this section, press 0.\
+        \n")
+    while True:
+        try:
+            decision = int(input("\n Make a choice: "))
+            if decision == 0:
+                opt = input("Do you want to leave the " +
+                            "program?(Yes/No): ").capitalize()
+                if decision == ('Yes') or opt == ('yes'):
+                    print("Leaving the program...")
+                    print("\nGoodbye.\n")
+                    quit()
+                else:
+                    print(" \n Taking you back to the genre menu...\n")
+                    print("\nWelcome back. Try some other\n")
+                    show_books()
+            # if decision = 
+            continue
+        except ValueError:
+            print("Please enter a number.")
 
 
 def show_books():
@@ -124,12 +149,13 @@ def show_books():
                 continue
         except ValueError:
             print("Please enter a number.")
-    # return choice
-    
+    return choice
+
 
 def main():
     introduction()
-    purpose(user_input())
-   
+    user = user_input()
+    purpose(user)
+
 
 main()
