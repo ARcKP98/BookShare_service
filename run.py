@@ -1,10 +1,11 @@
 
 import gspread
 import pyfiglet
+import re
 from colorama import Fore, Style
 # import pandas as pd
 from tabulate import tabulate
-from pprint import pprint
+# from pprint import pprint
 from google.oauth2.service_account import Credentials
 
 
@@ -24,7 +25,7 @@ SHEET = GSPREAD_CLIENT.open('bookkeeping')
 # data = book.get_all_values()
 # data1 = data[1:3]
 
-pprint(data1)
+# pprint(data1)
 
 
 def introduction():
@@ -70,6 +71,7 @@ def purpose(name):
                 break
             elif choice == 2:
                 print("\n You would like to donate a book. How nice!\n")
+                # donate()
                 break
             elif choice:
                 print("\n Enter a number from the given options.")
@@ -85,22 +87,58 @@ def checkout():
         \n")
     while True:
         try:
-            decision = int(input("\n Make a choice: "))
-            if decision == 0:
+            decision = input("\n Make a choice: ")
+            print(decision)
+            pattern = re.compile(r'\b' + decision + r'\b')
+            if decision == str(0):
                 opt = input("Do you want to leave the " +
                             "program?(Yes/No): ").capitalize()
-                if decision == ('Yes') or opt == ('yes'):
+                if opt == ('Yes'):
                     print("Leaving the program...")
                     print("\nGoodbye.\n")
                     quit()
-                else:
+                elif opt == ('No'):
                     print(" \n Taking you back to the genre menu...\n")
-                    print("\nWelcome back. Try some other\n")
+                    print("\nWelcome back.\n")
                     show_books()
-            # if decision = 
-            continue
+                else:
+                    print("Please choose from the options above.")
+                    continue
+            if decision:
+                codes = SHEET.worksheet('Books')
+                print("CODES")
+                print(codes)
+                code = codes.find(pattern, in_column=1)
+                print("code")
+                print(code)
+                # val = code.
+                # if decision == code:
+                print(f"This is code.row: {code.row}")
+                values_list = codes.row_values(code.row)
+                print(values_list)
+                a = values_list[0]
+                b = values_list[1]
+                c = values_list[2]
+                print(f"Your checkout code is {a}. The book is {b} by {c}")
+                print("Checking out...")
+                codes.delete_rows(code.row)
+                # Update to other sheets that display? Maybe combine.
+                print("Checkout complete.")
+                print("Good Bye")
+                quit()
+                #     # val = code.row()
+                #     # print(f"You selected the title {val}")
         except ValueError:
             print("Please enter a number.")
+
+
+# def donate():
+#     print("So, you would like to add to our collection.")
+#     don = input("What is the name of the book?\n")
+#     collection = SHEET.worksheet('Books').get('A')
+#     print(collection)
+#     if don == collection:
+#         print("We have this title. Maybe try another title.")
 
 
 def show_books():
@@ -129,11 +167,6 @@ def show_books():
                 # data = pd.DataFrame(gen2)
                 # print(data.to_string(index=False, header=False))
                 print(tabulate(gen2, headers="firstrow", tablefmt="pretty"))
-
-                # for col in gen2:
-                #     for row in col:
-                #         print(str(row).rjust(50), end="")
-                #         print("")
                 break
             if choice == 3:
                 print("Loading.......")
@@ -149,7 +182,7 @@ def show_books():
                 continue
         except ValueError:
             print("Please enter a number.")
-    return choice
+    checkout()
 
 
 def main():
