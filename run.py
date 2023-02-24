@@ -106,19 +106,19 @@ def checkout():
                     continue
             if decision:
                 codes = SHEET.worksheet('Books')
-                print("CODES")
-                print(codes)
+                # print("CODES")
+                # print(codes)
                 code = codes.find(pattern, in_column=1)
-                print("code")
-                print(code)
+                # print("code")
+                # print(code)
                 # val = code.
                 # if decision == code:
-                print(f"This is code.row: {code.row}")
-                values_list = codes.row_values(code.row)
-                print(values_list)
-                a = values_list[0]
-                b = values_list[1]
-                c = values_list[2]
+                # print(f"This is code.row: {code.row}")
+                row_info = codes.row_values(code.row)
+                # print(values_list)
+                a = row_info[0]
+                b = row_info[1]
+                c = row_info[2]
                 print(f"Your checkout code is {a}. The book is {b} by {c}")
                 print("Checking out...")
                 codes.delete_rows(code.row)
