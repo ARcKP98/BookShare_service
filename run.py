@@ -1,7 +1,6 @@
-
+import re
 import gspread
 import pyfiglet
-import re
 from colorama import Fore, Style
 # import pandas as pd
 from tabulate import tabulate
@@ -71,7 +70,7 @@ def purpose(name):
                 break
             elif choice == 2:
                 print("\n You would like to donate a book. How nice!\n")
-                # donate()
+                donate()
                 break
             elif choice:
                 print("\n Enter a number from the given options.")
@@ -116,10 +115,9 @@ def checkout():
                 # print(f"This is code.row: {code.row}")
                 row_info = codes.row_values(code.row)
                 # print(values_list)
-                a = row_info[0]
-                b = row_info[1]
-                c = row_info[2]
-                print(f"Your checkout code is {a}. The book is {b} by {c}")
+                book = row_info[1]
+                author = row_info[2]
+                print(f"You chose the book {book} by {author}")
                 print("Checking out...")
                 codes.delete_rows(code.row)
                 # Update to other sheets that display? Maybe combine.
@@ -132,13 +130,16 @@ def checkout():
             print("Please enter a number.")
 
 
-# def donate():
-#     print("So, you would like to add to our collection.")
-#     don = input("What is the name of the book?\n")
-#     collection = SHEET.worksheet('Books').get('A')
-#     print(collection)
-#     if don == collection:
-#         print("We have this title. Maybe try another title.")
+def donate():
+    print("So, you would like to add to our collection.")
+    don = input("What is the name of the book?\n")
+    don_reg = re.compile(r'\b' + don + r'\b')
+    collection = SHEET.worksheet('Books')
+    print(collection)
+    code = collection.find(don_reg, in_column=2)
+    print(f"The code is {code}")
+    if code is None:
+        print("We don't have this book. What is the Author's name?")
 
 
 def show_books():
