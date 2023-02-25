@@ -131,15 +131,38 @@ def checkout():
 
 
 def donate():
-    print("So, you would like to add to our collection.")
-    don = input("What is the name of the book?\n")
+    don = input("What is the name of the book?(The proper name)\n")
     don_reg = re.compile(r'\b' + don + r'\b')
     collection = SHEET.worksheet('Books')
-    print(collection)
+    # print(collection)
     code = collection.find(don_reg, in_column=2)
     print(f"The code is {code}")
     if code is None:
-        print("We don't have this book. What is the Author's name?")
+        print("We don't have this book.")
+        book = don
+        author = input("What is the Author's name?: ")
+        chek_code = len(collection.get_all_values())
+        print(chek_code)
+        entry = []
+        entry.append(chek_code)
+        entry.append(book)
+        entry.append(author)
+        print(entry)
+        print("Adding the entry to the library...")
+        collection.insert_row(entry)
+    if code:
+        row_info = collection.row_values(code.row)
+        book = row_info[1]
+        print(book)
+        print(f"We have have {don} in our collection.")
+        selection = input("\n Would you like to return to main menu?(Y/N): ")
+        if selection == 'Y' or selection == 'y':
+            print("Returning to main menu.....")
+            # Maybe clear screen?
+            show_books()
+        else:
+            print("Thank you for checking out our service. Goodbye.")
+            quit()
 
 
 def show_books():
