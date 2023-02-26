@@ -89,20 +89,20 @@ def checkout():
             decision = input("\n Make a choice: ")
             print(decision)
             pattern = re.compile(r'\b' + decision + r'\b')
-            while True:
-                if decision == str(0):
+            if decision == str(0):
+                while True:
                     opt = input("Do you want to leave the " +
                                 "program?(Yes/No): ").capitalize()
-                if opt == ('Yes'):
-                    print("Leaving the program...")
-                    print("\nGoodbye.\n")
-                    quit()
-                elif opt == ('No'):
-                    print(" \n Taking you back to the genre menu...\n")
-                    print("\nWelcome back.\n")
-                    show_books()
+                    if opt == ('Yes'):
+                        print("Leaving the program...")
+                        print("\nGoodbye.\n")
+                        quit()
+                    elif opt == ('No'):
+                        print(" \n Taking you back to the genre menu...\n")
+                        print("\nWelcome back.\n")
+                        show_books()
                     continue
-            if decision:
+            else:
                 codes = SHEET.worksheet('Books')
                 # print("CODES")
                 # print(codes)
@@ -130,7 +130,7 @@ def checkout():
 
 
 def donate():
-    don = input("What is the name of the book?(The proper name)\n")
+    don = input("What is the name of the book?(The proper name)\n").title()
     don_reg = re.compile(r'\b' + don + r'\b')
     collection = SHEET.worksheet('Books')
     # print(collection)
@@ -154,15 +154,25 @@ def donate():
         row_info = collection.row_values(code.row)
         book = row_info[1]
         print(book)
-        print(f"We have have {don} in our collection.")
-        selection = input("\n Would you like to return to main menu?(Y/N): ")
-        if selection == 'Y' or selection == 'y':
-            print("Returning to main menu.....")
-            # Maybe clear screen?
-            show_books()
-        else:
-            print("Thank you for checking out our service. Goodbye.")
-            quit()
+        print(f"We have {book} in our collection.")
+        while True:
+            sel = input("\n Would you like to return to main menu?(Y/N): ")
+            if sel == 'Y' or sel == 'y':
+                print("Returning to main menu.....")
+                # Maybe clear screen?
+                show_books()
+                continue
+            elif sel == 'N' or sel == 'n':
+                while True:
+                    sel = input("Would you like to leave the program?(Y/N): ")
+                    if sel == 'Y' or sel == 'y':
+                        print("Leaving the program...")
+                        print("GoodBye")
+                        quit()
+                    elif sel == 'N' or sel == 'n':
+                        print("Taking you to main menu...")
+                        show_books()
+                        break
 
 
 def show_books():
