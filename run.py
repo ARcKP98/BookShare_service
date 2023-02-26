@@ -89,9 +89,10 @@ def checkout():
             decision = input("\n Make a choice: ")
             print(decision)
             pattern = re.compile(r'\b' + decision + r'\b')
-            if decision == str(0):
-                opt = input("Do you want to leave the " +
-                            "program?(Yes/No): ").capitalize()
+            while True:
+                if decision == str(0):
+                    opt = input("Do you want to leave the " +
+                                "program?(Yes/No): ").capitalize()
                 if opt == ('Yes'):
                     print("Leaving the program...")
                     print("\nGoodbye.\n")
@@ -100,8 +101,6 @@ def checkout():
                     print(" \n Taking you back to the genre menu...\n")
                     print("\nWelcome back.\n")
                     show_books()
-                else:
-                    print("Please choose from the options above.")
                     continue
             if decision:
                 codes = SHEET.worksheet('Books')
@@ -142,14 +141,15 @@ def donate():
         book = don
         author = input("What is the Author's name?: ")
         chek_code = len(collection.get_all_values())
-        print(chek_code)
+        # print(chek_code)
         entry = []
         entry.append(chek_code)
         entry.append(book)
         entry.append(author)
-        print(entry)
+        # print(entry)
         print("Adding the entry to the library...")
-        collection.insert_row(entry)
+        collection.append_row(entry)
+        print("Thank you for your donation!! Have a nice day.")
     if code:
         row_info = collection.row_values(code.row)
         book = row_info[1]
