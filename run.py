@@ -7,23 +7,19 @@ from tabulate import tabulate
 # from pprint import pprint
 from google.oauth2.service_account import Credentials
 
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
-
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('bookkeeping')
 
-
 # book = SHEET.worksheet('Biographies')
 # data = book.get_all_values()
 # data1 = data[1:3]
-
 # pprint(data1)
 
 
@@ -49,7 +45,6 @@ def user_input():
             print("You have a number in your name. Please enter your name.")
             continue
         return name
-
 
 # def display_shot(show_books):
 #     gen1 = SHEET.worksheet('sci-fi').get_all_values()
@@ -82,7 +77,7 @@ def purpose(name):
 
 def checkout():
     print("\nIf you would like to borrow a book, enter the checkout code.")
-    print("If you don't want to borrow a book and leave this section, press 0.\
+    print("If you don't want to borrow a book and leave, press 0.\
         \n")
     decision = input("\n Make a choice: ")
     print(decision)
@@ -91,14 +86,14 @@ def checkout():
         try:
             if decision == str(0):
                 while True:
-                    opt = input("Do you want to leave the " +
-                                "program?(Yes/No): ").capitalize()
+                    opt = input("Are you sure you want to leave " +
+                                "to leave the program?(Yes/No): ").capitalize()
                     if opt == ('Yes'):
                         print("Leaving the program...")
                         print("\nGoodbye.\n")
                         quit()
                     elif opt == ('No'):
-                        print(" \n Taking you back to the genre menu...\n")
+                        print(" \n Taking you back to the books list...\n")
                         print("\nWelcome back.\n")
                         show_books()
                     else:
@@ -143,7 +138,7 @@ def donate():
     if code is None:
         print("We don't have this book.")
         book = don
-        author = input("What is the Author's name?: ")
+        author = input("What is the Author's name?: ").title()
         chek_code = len(collection.get_all_values())
         # print(chek_code)
         entry = []
@@ -180,46 +175,14 @@ def donate():
 
 
 def show_books():
-    print("To view our collection, pick a genre: \
-        \n 1. Science Fiction \
-        \n 2. Biographies \
-        \n 3. Self-Help")
-    while True:
-        try:
-            choice = choice = int(input("\n Make your choice: "))
-            if choice == 1:
-                print("Loading.......")
-                print("\n Here are our Science Fiction titles:\n")
-                gen1 = SHEET.worksheet('sci-fi').get('A:C')
-                # data = pd.DataFrame(gen1)
-                # print(data.to_string(index=False, header=False))
-                print(tabulate(gen1, headers="firstrow", tablefmt="presto"))
-                # gen1 = SHEET.worksheet('sci-fi')
-                # # data1 = gen1[1:4]
-                # print(gen1)
-                break
-            if choice == 2:
-                print("Loading.......")
-                print("\nHere are our biographical titles:\n")
-                gen2 = SHEET.worksheet('Biographies').get('A:C')
-                # data = pd.DataFrame(gen2)
-                # print(data.to_string(index=False, header=False))
-                print(tabulate(gen2, headers="firstrow", tablefmt="pretty"))
-                break
-            if choice == 3:
-                print("Loading.......")
-                print("\nHere are our Self-Help titles:\n")
-                gen3 = SHEET.worksheet('Self-help').get('A:C')
-                # data = pd.DataFrame(gen3)
-                # print(data.to_string(index=False, header=False))
-                print(tabulate(gen3, headers="firstrow", tablefmt="pretty"))
-
-                break
-            else:
-                print("Please pick from one of the options provided.")
-                continue
-        except ValueError:
-            print("Please enter a number.")
+    print("These are all the books in our collection. \n")
+    books = SHEET.worksheet('Books').get('A:D')
+    # data = pd.DataFrame(gen1)
+    # print(data.to_string(index=False, header=False))
+    print(tabulate(books, headers="firstrow", tablefmt="presto"))
+    # gen1 = SHEET.worksheet('sci-fi')
+    # # data1 = gen1[1:4]
+    # print(gen1)
     checkout()
 
 
