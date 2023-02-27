@@ -84,11 +84,11 @@ def checkout():
     print("\nIf you would like to borrow a book, enter the checkout code.")
     print("If you don't want to borrow a book and leave this section, press 0.\
         \n")
+    decision = input("\n Make a choice: ")
+    print(decision)
+    pattern = re.compile(r'\b' + decision + r'\b')
     while True:
         try:
-            decision = input("\n Make a choice: ")
-            print(decision)
-            pattern = re.compile(r'\b' + decision + r'\b')
             if decision == str(0):
                 while True:
                     opt = input("Do you want to leave the " +
@@ -101,7 +101,10 @@ def checkout():
                         print(" \n Taking you back to the genre menu...\n")
                         print("\nWelcome back.\n")
                         show_books()
-                    continue
+                        break
+                    else:
+                        print("Enter a valid input")
+                        continue
             else:
                 codes = SHEET.worksheet('Books')
                 # print("CODES")
@@ -123,10 +126,11 @@ def checkout():
                 print("Checkout complete.")
                 print("Good Bye")
                 quit()
-                #     # val = code.row()
-                #     # print(f"You selected the title {val}")
-        except ValueError:
+                # val = code.row()
+                # print(f"You selected the title {val}")
+        except AttributeError:
             print("Please enter a number.")
+            
 
 
 def donate():
