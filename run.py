@@ -101,7 +101,6 @@ def checkout():
                         print(" \n Taking you back to the genre menu...\n")
                         print("\nWelcome back.\n")
                         show_books()
-                        break
                     else:
                         print("Enter a valid input")
                         continue
@@ -130,7 +129,8 @@ def checkout():
                 # print(f"You selected the title {val}")
         except AttributeError:
             print("Please enter a number.")
-            
+            decision = input("\n Make a choice: ")
+            pattern = re.compile(r'\b' + decision + r'\b')
 
 
 def donate():
