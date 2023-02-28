@@ -66,10 +66,12 @@ def purpose(name):
             choice = int(input("\n Make your choice: "))
             if choice == 1:
                 print("\n You would like to see our collection.\n")
+                sleep(1)
                 show_books()
                 break
             elif choice == 2:
                 print("\n You would like to donate a book. How nice!\n")
+                sleep(1)
                 donate()
                 break
             elif choice:
@@ -101,7 +103,7 @@ def checkout():
                         quit()
                     elif opt == ('No'):
                         print(" \n Taking you back to the books list...\n")
-                        sleep(1.3)
+                        sleep(0.5)
                         print("\nWelcome back.\n")
                         sleep(1)
                         show_books()
@@ -125,7 +127,7 @@ def checkout():
                 print(f"You chose the book {book} by {author}")
                 sleep(0.8)
                 print("Checking out...")
-                sleep(2)
+                sleep(3)
                 codes.delete_rows(code.row)
                 # Update to other sheets that display? Maybe combine.
                 print("Checkout complete.")
@@ -163,23 +165,21 @@ def donate():
         entry.append(author)
         # print(entry)
         print("Adding the entry to the library...")
-        sleep(2)
+        sleep(3)
         collection.append_row(entry)
         print("Thank you for your donation!! Have a nice day.")
         quit()
     if code:
         row_info = collection.row_values(code.row)
         book = row_info[1]
-        print(book)
         sleep(0.5)
         print(f"We have {book} in our collection.")
         sleep(0.5)
         while True:
-            sel = input("\n Would you like to return to main menu?(Y/N): ")
+            sel = input("\n Would you like to see the books we have?(Y/N): ")
             if sel == 'Y' or sel == 'y':
-                print("Returning to main menu.....")
+                print("\n Returning to the collection.....")
                 sleep(1)
-                # Maybe clear screen?
                 show_books()
                 continue
             elif sel == 'N' or sel == 'n':
@@ -192,7 +192,7 @@ def donate():
                         print("GoodBye")
                         quit()
                     elif sel == 'N' or sel == 'n':
-                        print("Taking you to main menu...")
+                        print("Taking you to the book collection...")
                         sleep(0.5)
                         show_books()
                         break
@@ -200,7 +200,7 @@ def donate():
 
 def show_books():
     sleep(1.8)
-    print("These are all the books in our collection. \n")
+    print("\n These are all the books in our collection. \n")
     books = SHEET.worksheet('Books').get('A:C')
     # data = pd.DataFrame(gen1)
     # print(data.to_string(index=False, header=False))
