@@ -1,7 +1,7 @@
 import re
+from time import sleep
 import gspread
 import pyfiglet
-from time import sleep
 from colorama import Fore, Style
 # import pandas as pd
 from tabulate import tabulate
@@ -57,7 +57,6 @@ def user_input():
 
 
 def purpose(name):
-    sleep(1.8)
     print(f"\n Hi {name}. What would you like to do?")
     sleep(1)
     print("\n 1. Check out our books. \
@@ -202,7 +201,7 @@ def donate():
 def show_books():
     sleep(1.8)
     print("These are all the books in our collection. \n")
-    books = SHEET.worksheet('Books').get('A:D')
+    books = SHEET.worksheet('Books').get('A:C')
     # data = pd.DataFrame(gen1)
     # print(data.to_string(index=False, header=False))
     sleep(1.3)

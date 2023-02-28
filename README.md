@@ -1,31 +1,42 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Bookkeeping Service
 
-Welcome ARcKP98,
+The Bookkeeping service is a command line interface application that uses the Heroku terminal. The purpose of this app is to allow users to explore new books by checking them out of the library and to donate books that can be used by others. This service acts as intermediary between people who would like to read books and people who would like to donate books for others to read by managing the collection and storage of books.   
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+<!-- ![The landing page on different devices]() -->
 
-## Reminders
+<br>
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+<!-- ### The [link]() to the live project  -->
+---
+## Contents
+* [User Experience](#user-experience)
+  * [Client Objective](#client-objective)
+  * [User Stories](#user-stories)
 
-## Creating the Heroku app
+* [Design](#design)
+  * [Flowchart](#flowchart)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* [Features](#features)
+  * [General Features](#general-features)
+  * [Future Implementations](#future-implementations)
+  * [Database](#database)
 
-1. `heroku/python`
-2. `heroku/nodejs`
+* [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+  * [Libraries and Programs Used](#libraries-and-programs-used)
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+* [Testing](#testing)
+  * [Issues Discovered](#issues-discovered)
+  * [PEP8 Validation](#pep8-validation)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+* [Deployment & Local Development](#deployment--local-development)
+  * [Deployment](#deployment)
+  * [Local Development](#local-development)
+    * [Fork](#fork)
+    * [Clone](#clone)
 
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
+* [Credits](#credits)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgments](#acknowledgments)
+------
