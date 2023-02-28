@@ -42,7 +42,10 @@ def user_input():
                   "Please try again.")
             continue
         elif name.isdigit():
-            print("You have a number in your name. Please enter your name.")
+            print("You have entered a number. Please enter your name.")
+            continue
+        elif not name.isalpha():
+            print("Please enter your name. You have numbers in your name.")
             continue
         return name
 
