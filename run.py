@@ -1,6 +1,7 @@
 import re
 import gspread
 import pyfiglet
+from time import sleep
 from colorama import Fore, Style
 # import pandas as pd
 from tabulate import tabulate
@@ -56,7 +57,9 @@ def user_input():
 
 
 def purpose(name):
+    sleep(1.8)
     print(f"\n Hi {name}. What would you like to do?")
+    sleep(1)
     print("\n 1. Check out our books. \
         \n 2. Donate a Book.\n")
     while True:
@@ -79,11 +82,12 @@ def purpose(name):
 
 
 def checkout():
+    sleep(1)
     print("\nIf you would like to borrow a book, enter the checkout code.")
     print("If you don't want to borrow a book and leave, press 0.\
         \n")
     decision = input("\n Make a choice: ")
-    print(decision)
+    # print(decision)
     pattern = re.compile(r'\b' + decision + r'\b')
     while True:
         try:
@@ -93,11 +97,14 @@ def checkout():
                                 "to leave the program?(Yes/No): ").capitalize()
                     if opt == ('Yes'):
                         print("Leaving the program...")
+                        sleep(1)
                         print("\nGoodbye.\n")
                         quit()
                     elif opt == ('No'):
                         print(" \n Taking you back to the books list...\n")
+                        sleep(1.3)
                         print("\nWelcome back.\n")
+                        sleep(1)
                         show_books()
                     else:
                         print("Enter a valid input")
@@ -117,10 +124,13 @@ def checkout():
                 book = row_info[1]
                 author = row_info[2]
                 print(f"You chose the book {book} by {author}")
+                sleep(0.8)
                 print("Checking out...")
+                sleep(2)
                 codes.delete_rows(code.row)
                 # Update to other sheets that display? Maybe combine.
                 print("Checkout complete.")
+                sleep(0.8)
                 print("Good Bye")
                 quit()
                 # val = code.row()
@@ -132,17 +142,21 @@ def checkout():
 
 
 def donate():
+    sleep(0.5)
     don = input("What is the name of the book?(The proper name)\n").title()
     don_reg = re.compile(r'\b' + don + r'\b')
     collection = SHEET.worksheet('Books')
     # print(collection)
     code = collection.find(don_reg, in_column=2)
-    print(f"The code is {code}")
+    # print(f"The code is {code}")
     if code is None:
+        sleep(1)
         print("We don't have this book.")
+        sleep(0.5)
+        chek_code = len(collection.get_all_values())
         book = don
         author = input("What is the Author's name?: ").title()
-        chek_code = len(collection.get_all_values())
+        sleep(0.5)
         # print(chek_code)
         entry = []
         entry.append(chek_code)
@@ -150,38 +164,48 @@ def donate():
         entry.append(author)
         # print(entry)
         print("Adding the entry to the library...")
+        sleep(2)
         collection.append_row(entry)
         print("Thank you for your donation!! Have a nice day.")
+        quit()
     if code:
         row_info = collection.row_values(code.row)
         book = row_info[1]
         print(book)
+        sleep(0.5)
         print(f"We have {book} in our collection.")
+        sleep(0.5)
         while True:
             sel = input("\n Would you like to return to main menu?(Y/N): ")
             if sel == 'Y' or sel == 'y':
                 print("Returning to main menu.....")
+                sleep(1)
                 # Maybe clear screen?
                 show_books()
                 continue
             elif sel == 'N' or sel == 'n':
                 while True:
                     sel = input("Would you like to leave the program?(Y/N): ")
+                    sleep(0.8)
                     if sel == 'Y' or sel == 'y':
                         print("Leaving the program...")
+                        sleep(1.8)
                         print("GoodBye")
                         quit()
                     elif sel == 'N' or sel == 'n':
                         print("Taking you to main menu...")
+                        sleep(0.5)
                         show_books()
                         break
 
 
 def show_books():
+    sleep(1.8)
     print("These are all the books in our collection. \n")
     books = SHEET.worksheet('Books').get('A:D')
     # data = pd.DataFrame(gen1)
     # print(data.to_string(index=False, header=False))
+    sleep(1.3)
     print(tabulate(books, headers="firstrow", tablefmt="presto"))
     # gen1 = SHEET.worksheet('sci-fi')
     # # data1 = gen1[1:4]
