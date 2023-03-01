@@ -6,7 +6,7 @@ The Bookkeeping service is a command line interface application that uses the He
 
 <br>
 
-<!-- ### The [link]() to the live project  -->
+### The [link](https://bookkeeping.herokuapp.com/) to the live project 
 ---
 ## Contents
 * [User Experience](#user-experience)
