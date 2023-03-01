@@ -55,4 +55,11 @@ The Bookkeeping service is a command line interface application that uses the He
     #### Returning User Goals 
   * I want the database to be up to date with all the books it has.
   * I want the program to tell me if the book I am donating is in the database or not.
+
+  ## Design 
+  ### Flowchart
+  ![Flowchart](/readme-images/bookkeeping.drawio%20.png)
+  Flow of how the program runs.
+  
+
  
