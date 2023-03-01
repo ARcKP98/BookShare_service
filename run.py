@@ -43,7 +43,7 @@ def introduction():
 def user_input():
     '''
     This function asks user for their name and checks if the user
-    has inputted a proper name. 
+    has inputted a proper name.
     '''
     while True:
         name = input("What is your name(at least 3 characters): ").capitalize()
@@ -64,8 +64,8 @@ def user_input():
 
 def purpose(name):
     '''
-    This function helps user pick between browsing the collection and 
-    donating to the collection. 
+    This function helps user pick between browsing the collection and
+    donating to the collection.
     '''
     print(f"\n Hi {name}. What would you like to do?")
     sleep(1)
@@ -94,7 +94,7 @@ def purpose(name):
 
 def checkout():
     '''
-    This function checks whether user input is valid and removes the book from 
+    This function checks whether user input is valid and removes the book from
     the collection.
     '''
 
@@ -161,7 +161,7 @@ def donate():
     '''
     This function allows user to donate a book of their choice.
     It checks if the book is already in the collection and if
-    it is not, it adds the book to the sheet. 
+    it is not, it adds the book to the sheet.
     '''
     sleep(0.5)
     don = input("What is the name of the book?(The proper name)\n").title()
@@ -220,8 +220,8 @@ def donate():
 
 def show_books():
     '''
-    This function displays all the books that are on the 
-    Google Sheets. 
+    This function displays all the books that are on the
+    Google Sheets.
     '''
     sleep(1.8)
     print("\n These are all the books in our collection. \n")
