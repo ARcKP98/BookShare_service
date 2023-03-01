@@ -1,3 +1,6 @@
+'''
+Importing the Google sheet API along with python libraries and module.
+'''
 import re
 from time import sleep
 import gspread
@@ -25,9 +28,11 @@ SHEET = GSPREAD_CLIENT.open('bookkeeping')
 
 
 def introduction():
+    '''
+    Informs users the purpose of this program.
+    '''
     big_banner = pyfiglet.figlet_format("Bookkeeping Service!!")
     print(Fore.YELLOW + Style.BRIGHT + big_banner)
-    # print(Style.RESET_ALL)
     print("Welcome to the Bookkeeping Service. We are glad you are here.\n")
     print("This service was built to allow people to share their books.\n")
     print("We have a collection of books for you to check-out, " +
@@ -36,6 +41,10 @@ def introduction():
 
 
 def user_input():
+    '''
+    This function asks user for their name and checks if the user
+    has inputted a proper name. 
+    '''
     while True:
         name = input("What is your name(at least 3 characters): ").capitalize()
         if len(name) < 3:
@@ -44,9 +53,6 @@ def user_input():
             continue
         elif name.isdigit():
             print("You have entered a number. Please enter your name.")
-            continue
-        elif not name.isalpha():
-            print("Please enter your name. You have numbers in your name.")
             continue
         return name
 
@@ -57,6 +63,10 @@ def user_input():
 
 
 def purpose(name):
+    '''
+    This function helps user pick between browsing the collection and 
+    donating to the collection. 
+    '''
     print(f"\n Hi {name}. What would you like to do?")
     sleep(1)
     print("\n 1. Check out our books. \
@@ -66,12 +76,12 @@ def purpose(name):
             choice = int(input("\n Make your choice: "))
             if choice == 1:
                 print("\n You would like to see our collection.\n")
-                sleep(1)
+                sleep(0.5)
                 show_books()
                 break
             elif choice == 2:
                 print("\n You would like to donate a book. How nice!\n")
-                sleep(1)
+                sleep(0.5)
                 donate()
                 break
             elif choice:
@@ -83,6 +93,11 @@ def purpose(name):
 
 
 def checkout():
+    '''
+    This function checks whether user input is valid and removes the book from 
+    the collection.
+    '''
+
     sleep(1)
     print("\nIf you would like to borrow a book, enter the checkout code.")
     print("If you don't want to borrow a book and leave, press 0.\
@@ -143,6 +158,11 @@ def checkout():
 
 
 def donate():
+    '''
+    This function allows user to donate a book of their choice.
+    It checks if the book is already in the collection and if
+    it is not, it adds the book to the sheet. 
+    '''
     sleep(0.5)
     don = input("What is the name of the book?(The proper name)\n").title()
     don_reg = re.compile(r'\b' + don + r'\b')
@@ -199,6 +219,10 @@ def donate():
 
 
 def show_books():
+    '''
+    This function displays all the books that are on the 
+    Google Sheets. 
+    '''
     sleep(1.8)
     print("\n These are all the books in our collection. \n")
     books = SHEET.worksheet('Books').get('A:C')
@@ -213,6 +237,9 @@ def show_books():
 
 
 def main():
+    '''
+    Starting point of the program. Calls multiple functions.
+    '''
     introduction()
     user = user_input()
     purpose(user)
