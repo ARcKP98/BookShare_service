@@ -6,10 +6,9 @@ from time import sleep
 import gspread
 import pyfiglet
 from colorama import Fore, Style
-# import pandas as pd
 from tabulate import tabulate
-# from pprint import pprint
 from google.oauth2.service_account import Credentials
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -20,11 +19,6 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('bookkeeping')
-
-# book = SHEET.worksheet('Biographies')
-# data = book.get_all_values()
-# data1 = data[1:3]
-# pprint(data1)
 
 
 def introduction():
@@ -46,13 +40,13 @@ def user_input():
     has inputted a proper name.
     '''
     while True:
-        name = input("What is your name(at least 3 characters): ").capitalize()
+        name = input("Enter your name(at least 3 characters):\n").capitalize()
         if len(name) < 3:
-            print("\nA minimum of three character is required(EG: Tim)."
+            print("\n A minimum of three character is required(EG: Tim)."
                   "Please try again.")
             continue
         elif name.isdigit():
-            print("You have entered a number. Please enter your name.")
+            print("\n You have entered a number. Please enter your name.")
             continue
         return name
 
@@ -73,7 +67,7 @@ def purpose(name):
         \n 2. Donate a Book.\n")
     while True:
         try:
-            choice = int(input("\n Make your choice: "))
+            choice = int(input("\n Make your choice: \n"))
             if choice == 1:
                 print("\n You would like to see our collection.\n")
                 sleep(0.5)
@@ -102,7 +96,7 @@ def checkout():
     print("\nIf you would like to borrow a book, enter the checkout code.")
     print("If you don't want to borrow a book and leave, press 0.\
         \n")
-    decision = input("\n Make a choice: ")
+    decision = input("\n Make a choice: \n")
     # print(decision)
     pattern = re.compile(r'\b' + decision + r'\b')
     while True:
@@ -110,7 +104,7 @@ def checkout():
             if decision == str(0):
                 while True:
                     opt = input("Are you sure you want to leave " +
-                                "to leave the program?(Yes/No): ").capitalize()
+                                "the program?(Yes/No):\n").capitalize()
                     if opt == ('Yes'):
                         print("Leaving the program...")
                         sleep(1)
@@ -127,33 +121,25 @@ def checkout():
                         continue
             else:
                 codes = SHEET.worksheet('Books')
-                # print("CODES")
-                # print(codes)
                 code = codes.find(pattern, in_column=1)
-                # print("code")
-                # print(code)
-                # val = code.
-                # if decision == code:
-                # print(f"This is code.row: {code.row}")
                 row_info = codes.row_values(code.row)
-                # print(values_list)
                 book = row_info[1]
                 author = row_info[2]
                 print(f"You chose the book {book} by {author}")
                 sleep(0.8)
                 print("Checking out...")
                 sleep(3)
+
                 codes.delete_rows(code.row)
-                # Update to other sheets that display? Maybe combine.
+
                 print("Checkout complete.")
                 sleep(0.8)
                 print("Good Bye")
                 quit()
-                # val = code.row()
-                # print(f"You selected the title {val}")
+
         except AttributeError:
             print("Please enter a number.")
-            decision = input("\n Make a choice: ")
+            decision = input("\n Make a choice: \n")
             pattern = re.compile(r'\b' + decision + r'\b')
 
 
@@ -164,26 +150,25 @@ def donate():
     it is not, it adds the book to the sheet.
     '''
     sleep(0.5)
-    don = input("What is the name of the book?(The proper name)\n").title()
+    don = input("What is the name of the book?(The proper name):\n").title()
     don_reg = re.compile(r'\b' + don + r'\b')
     collection = SHEET.worksheet('Books')
-    # print(collection)
+
     code = collection.find(don_reg, in_column=2)
-    # print(f"The code is {code}")
     if code is None:
         sleep(1)
         print("We don't have this book.")
         sleep(0.5)
         chek_code = len(collection.get_all_values())
         book = don
-        author = input("What is the Author's name?: ").title()
+        author = input("What is the Author's name?: \n").title()
         sleep(0.5)
-        # print(chek_code)
+
         entry = []
         entry.append(chek_code)
         entry.append(book)
         entry.append(author)
-        # print(entry)
+
         print("Adding the entry to the library...")
         sleep(3)
         collection.append_row(entry)
@@ -196,7 +181,7 @@ def donate():
         print(f"We have {book} in our collection.")
         sleep(0.5)
         while True:
-            sel = input("\n Would you like to see the books we have?(Y/N): ")
+            sel = input("\n Would you like to see the books we have?(Y/N): \n")
             if sel == 'Y' or sel == 'y':
                 print("\n Returning to the collection.....")
                 sleep(1)
@@ -204,7 +189,7 @@ def donate():
                 continue
             elif sel == 'N' or sel == 'n':
                 while True:
-                    sel = input("Would you like to leave the program?(Y/N): ")
+                    sel = input("Would you like to leave the program?(Y/N):\n")
                     sleep(0.8)
                     if sel == 'Y' or sel == 'y':
                         print("Leaving the program...")
@@ -226,13 +211,10 @@ def show_books():
     sleep(1.8)
     print("\n These are all the books in our collection. \n")
     books = SHEET.worksheet('Books').get('A:C')
-    # data = pd.DataFrame(gen1)
-    # print(data.to_string(index=False, header=False))
+
     sleep(1.3)
     print(tabulate(books, headers="firstrow", tablefmt="presto"))
-    # gen1 = SHEET.worksheet('sci-fi')
-    # # data1 = gen1[1:4]
-    # print(gen1)
+
     checkout()
 
 
