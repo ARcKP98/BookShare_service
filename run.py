@@ -213,7 +213,8 @@ def show_books():
     books = SHEET.worksheet('Books').get('A:C')
 
     sleep(1.3)
-    print(tabulate(books, headers="firstrow", tablefmt="presto"))
+    print(tabulate(books, headers="firstrow", tablefmt="simple_grid",
+          maxcolwidths=[None, 23]))
 
     checkout()
 
