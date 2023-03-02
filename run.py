@@ -29,8 +29,8 @@ def introduction():
     print(Fore.YELLOW + Style.BRIGHT + big_banner)
     print("Welcome to the Bookkeeping Service. We are glad you are here.\n")
     print("This service was built to allow people to share their books.\n")
-    print("We have a collection of books for you to check-out, " +
-          "if you just want a book to read.\n")
+    print("We have a collection of books for you to check-out,")
+    print("if you just want a book to read.\n")
     print("We hope this service can be of use to you.\n")
 
 
@@ -159,7 +159,7 @@ def donate():
         sleep(1)
         print("We don't have this book.")
         sleep(0.5)
-        chek_code = len(collection.get_all_values())
+        chek_code = len(collection.get_all_values()) + 1
         book = don
         author = input("What is the Author's name?: \n").title()
         sleep(0.5)
@@ -213,7 +213,7 @@ def show_books():
     books = SHEET.worksheet('Books').get('A:C')
 
     sleep(1.3)
-    print(tabulate(books, headers="firstrow", tablefmt="simple_grid",
+    print(tabulate(books, headers="firstrow", tablefmt="presto",
           maxcolwidths=[None, 23]))
 
     checkout()
