@@ -26,6 +26,8 @@ The Bookkeeping service is a command line interface application that uses the He
   * [Libraries and Programs Used](#libraries-and-programs-used)
 
 * [Testing](#testing)
+  * [User Goal Testing](#user-goal-testing)
+  * [Manual Testing](#manual-testing)
   * [Issues Discovered](#issues-discovered)
   * [PEP8 Validation](#pep8-validation)
 
@@ -96,7 +98,7 @@ The Bookkeeping service is a command line interface application that uses the He
 <br>
 
 ### Database
- ![Donation section](/readme-images/sheets.png)
+ ![Google Sheets database](/readme-images/sheets.png)
  
  A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
 <br>
@@ -116,12 +118,81 @@ The following python libraries were used:
 
 The following Programs were used:
 * Google Sheets: To store all the data.
-* Draw.io: To create the flowchart.
+* [Draw.io](https://app.diagrams.net/): To create the flowchart.
 * Gitpod: To edit code and READ.ME file.
 * Git: Version control.
 * Heroku: Deployment of the final app. 
+* [CI python Linter](https://pep8ci.herokuapp.com/): To validate the code in accordance with PEP8. 
 
 <br>
+
+## Testing 
+### User Goals Testing
+The table outlines first-time users goals and whether they were accomplished or not.
+| First-time User Goals| How was it addressed | Accomplished
+| ------ | --------- | -----------
+| I want to find out what kind of books the service has. |The user can brose the collection before deciding upon a book. | Yes
+| I want the abiliity to checkout a book from the database with minimal effort.| The user can checkout a book simply by pressing the code associated with the book.| Yes
+| I want the ability to donate a book to the database with minimal effort.| The user can donate a book effortlessly by providing the name of the book and the author. | Yes
+| I want this app to be easy to use with clear instructions. | The program starts with instructions regarding what the service is about and throughout the app the user is not required to enter large inputs to use the app. They just have to enter numbers or small words. | Yes 
+
+<br>
+
+The table outlines returning users goals and whether they were accomplished or not.
+| Returning User Goals| How was it addressed | Accomplished
+| ------ | --------- | -----------
+| I want the database to be up to date with all the books it has. | The google sheet used is always updated when a book is donated or checked out so always providing the user with up to date information. | Yes
+| I want the program to tell me if the book I am donating is in the database or not.| The user will be informed if the book they have entered already exists in the google sheets. | Yes
+<br>
+
+### Manual Testing
+The table below outlines tetsing done on different parts of the program. Testing done in order of flow of the program. 
+|Expectation| How was it tested| Result
+| -------- | ----------- | ---------------
+| The user cannot proceed if the input is: less than three characters, just numbers, or left blank| By entering wrong input to see if the program continues or not. | The input section works as intended.
+|When the user is asked to pick between browsing books or donating books, the user cannot proceed unless they enter the right number.| By entering wrong numbers or random text to see if the program accepts that input.| The input works as intended. 
+|If the user wants to leave when they are done browsing, they cannot leave until they enter 'Yes'.| By trying to enter other words or numbers instead of yes/no.| The input works as intended. 
+|If the user wants to checkout a book, they cannot enter text instead of numbers. | By trying to enter letters to see if the program accepts that input.| The input works as intended. 
+|If the user wants to donate, the program does not accept books that already exist in the database.| By entering names of the books that already exist to see if they are added to the collection or not. | The code works as intended.
+|If the user donates a book and it does not exist, the user is asked for more information before adding the book to the collection.| By entering a book that does not exists and providing the neccesary information. Then check the google worksheet to see if the entry was appended. | The code works as intended.
+
+<br>
+
+### Issues Discovered 
+|Bug|Solve|
+|-----|---------|
+|The google sheet was not being searched by python when user picked a number. The code would return only location or would just not parse. | Convert the input to RegEx when working with find(). To get the values in that row, use row.values, using the var where find parameter was saved to pull value from that row. |
+|The purpose function was not using the return value from user_input once the functions were added to the main function. | Add an argument to purpose function that takes a value and add a user variable in the main function with a value of user_input which is then passed to purpose in the main function.|
+|The name variable was not accepting valid input for names unless users entered their full name. | Remove the isalnum() check and only keep the check for not entering names.|
+|The program would crash if the user input was invalid. | Add try and except statements.|
+|The colection data was not presented properly on Heroku. | Switch to tabulate and use maxcols. |
+|When donating, the code for making sure the book was not present led to AttributeError(AttributeError: 'NoneType' object has no attribute 'row'). | The first part was to use the keyword **is**. The second part was to convert the input to string. |
+|If the input, when checking out a book was wrong, it would lead to an AttributeError. | One of the elif statements was in the wrong code block and the input(along with its RegEx conversion) was added to the except block again.|
+|The checkout code would be duplicated if there were more books that were checkedout. | Add a + 5 to the variable which takes the length of the dataset and adds 5 to give a checkout code. This is not a perfect solution but for the programs purpose and time constraints, this solution is valid.|
+|Character length exceeding 80 characters. | Use string concatenation and break text up.|
+
+### PEP8 Validation
+ ![PEP8 validation](/readme-images/pep8.png)
+
+ 
+ No major errors were found when the code was tested. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
