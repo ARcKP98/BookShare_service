@@ -81,9 +81,29 @@ The Bookkeeping service is a command line interface application that uses the He
 
     <br>
 
-  If the user decides to donate instead of checking out a book, they are first asked to enter the name of the book they want to donate. This name is then used to search the google worksheet to see if it exists. If the book does not exist, the user is asked for the author's name and then the book is added to the collection. If the book does exist in the collection, the user is informed that the book exists and then has the option to view the collection or leave the program.
+  If the user decides to donate instead of checking out a book, they are first asked to enter the name of the book they want to donate. This name is then used to search the Google worksheet to see if it exists. If the book does not exist, the user is asked for the author's name and then the book is added to the collection. If the book does exist in the collection, the user is informed that the book exists and then has the option to view the collection or leave the program.
   ![Donation section](/readme-images/donation.png)
   ![Donation section but the book exists](/readme-images/donation-exists.png)
+
+
+  ### Future Implementations
+  <br>
+  In the future, I would like to add more functionality and features to the program to improve overall user experience. Features like: 
+  * More genres of books which can be organised in their respective sections so the user only looks at books that are relevant to them. 
+  * Use an actual database to store books instead of a Google sheet for better data management.
+  * Add a log to tracks users checkout and donation history to provide a more traditional library experience.
+
+<br>
+
+### Database
+ ![Donation section](/readme-images/donation.png)
+ 
+ A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
+
+ 
+
+
+
 
 
   
