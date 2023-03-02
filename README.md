@@ -38,8 +38,6 @@ The Bookkeeping service is a command line interface application that uses the He
     * [Clone](#clone)
 
 * [Credits](#credits)
-  * [Content](#content)
-  * [Media](#media)
   * [Acknowledgments](#acknowledgments)
 ------
 
@@ -176,6 +174,56 @@ The table below outlines tetsing done on different parts of the program. Testing
 
  
  No major errors were found when the code was tested. 
+
+<br>
+
+ ## Deployment & Local Development
+ ### Deployment 
+ This is a backend application made using python which cannot be deployed using GitHub pages. This project therefore was deployed using Heroku. Follow the steps below.
+ 1. Login to your Heroku account.
+ 2. On your dashboard, click on the new button which is at the top right corner. 
+ 3. Select **Create new app**. 
+ 4. Give your app a name, select your region and press **Create app**.
+ 5. Go to the *settings* tab and scroll down to *Config Vars* and click **Reveal Config Vars**
+ 6. Here, enter **PORT** in the KEY field and **8000** in the VALUE field. Press Add after.
+ 7. In the second KEY field, enter **CREDS** and in the VALUE field enter all the contents of your **creds.json** file.
+ 8. Next, scroll down to *buildpacks* and select **Add buildpacks**. 
+ 9. Select and add Python and node.js buildpack. Make sure they are in that order. If not re-arrange them using the hamburger icon. 
+ 10. Scroll up and select the *Deploy* tab and choose GitHub. 
+ 11. Search the repository you want to use and then click **Connect**. Now your repository is connected to Heroku.
+ 12. Scroll to the bottom of the page and pick either *Manual* or *Automatic* deployment. Click **Deploy branch** and wait for the app to be deployed. 
+ <br>
+
+ ### Local Development
+ #### Fork
+1. Log in with your Github account or make one if you don't have one.
+2. Find the repository: mcu_quiz.
+3. Click the Fork button on the top right corner. 
+<br>
+
+#### Clone
+1. Log in with your Github account or make one if you don't have one. 
+2. Find the repository: mcu_quiz.
+3. Click the **Code** button next to the Gitpod button and **copy** the HTTPS link. 
+4. Open the terminal. 
+5. Make sure that the current directory is the one where you want the cloned repository to be. 
+6. Use the command ```git clone``` and paste the link. 
+7. Press Enter. Now the repository is cloned.
+<br>
+
+## Credits 
+* [Tabulate](https://pypi.org/project/tabulate/) for formatting the tables.
+* [Time](https://docs.python.org/3/library/time.html) for using sleep. 
+* W3Schools for various python methods. 
+* [StackOverflow](https://stackoverflow.com/questions/8949252/why-do-i-get-attributeerror-nonetype-object-has-no-attribute-something) for helping with None. 
+
+### Acknowledgements
+* Adegbenga Adeye, my CI mentor for feedback and testing the program with me. 
+* Tutor support for all their time and guidance. 
+* Code Institute for the python template.
+
+
+
 
 
 
