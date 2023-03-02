@@ -99,9 +99,29 @@ The Bookkeeping service is a command line interface application that uses the He
  ![Donation section](/readme-images/donation.png)
  
  A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
+<br>
 
- 
+## Technologies used
+### Language used
+* The program was primarily created using **Python 3**. 
 
+### Libraries and Programs Used
+The following python libraries were used: 
+* gspread: Access google sheets.
+* time: To create a buffer in code execution. 
+* regex: Convert input to regualr expression for scanning the worksheet.
+* pyfiglet: For the service logo.
+* colorama: To style the terminal text.
+* tabulate: To display all the data in a table format.
+
+The following Programs were used:
+* Google Sheets: To store all the data.
+* Draw.io: To create the flowchart.
+* Gitpod: To edit code and READ.ME file.
+* Git: Version control.
+* Heroku: Deployment of the final app. 
+
+<br>
 
 
 
