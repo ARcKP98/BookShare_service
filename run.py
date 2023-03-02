@@ -159,7 +159,7 @@ def donate():
         sleep(1)
         print("We don't have this book.")
         sleep(0.5)
-        chek_code = len(collection.get_all_values()) + 1
+        chek_code = len(collection.get_all_values()) + 5
         book = don
         author = input("What is the Author's name?: \n").title()
         sleep(0.5)
@@ -172,6 +172,7 @@ def donate():
         print("Adding the entry to the library...")
         sleep(3)
         collection.append_row(entry)
+        print(f"You donated {book} by {author}.")
         print("Thank you for your donation!! Have a nice day.")
         quit()
     if code:
