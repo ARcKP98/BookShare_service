@@ -50,11 +50,6 @@ def user_input():
             continue
         return name
 
-# def display_shot(show_books):
-#     gen1 = SHEET.worksheet('sci-fi').get_all_values()
-#     data = pd.DataFrame(gen1)
-#     print(data)
-
 
 def purpose(name):
     '''
@@ -93,11 +88,10 @@ def checkout():
     '''
 
     sleep(1)
-    print("\nIf you would like to borrow a book, enter the checkout code.")
+    print("\nIf you would like to borrow a book, enter the code of the book.")
     print("If you don't want to borrow a book and leave, press 0.\
         \n")
     decision = input("\n Make a choice: \n")
-    # print(decision)
     pattern = re.compile(r'\b' + decision + r'\b')
     while True:
         try:
