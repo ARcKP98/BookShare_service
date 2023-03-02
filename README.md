@@ -2,7 +2,7 @@
 
 The Bookkeeping service is a command line interface application that uses the Heroku terminal. The purpose of this app is to allow users to explore new books by checking them out of the library and to donate books that can be used by others. This service acts as intermediary between people who would like to read books and people who would like to donate books for others to read by managing the collection and storage of books.   
 
-<!-- ![The landing page on different devices]() -->
+![The landing page](/readme-images/appview.png)
 
 <br>
 
@@ -96,7 +96,7 @@ The Bookkeeping service is a command line interface application that uses the He
 <br>
 
 ### Database
- ![Donation section](/readme-images/donation.png)
+ ![Donation section](/readme-images/sheets.png)
  
  A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
 <br>
