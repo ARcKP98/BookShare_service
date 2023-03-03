@@ -88,12 +88,15 @@ The next section is where the user can decide what they would like to do. The us
 If the user decides to view the collection by pressing 1, the user is then taken to the collection where they can view all the books that are currently available. The user here can see the code to checkout the book of their choice, the name of the book, and the author of the book. The user has two options: To check out a book using the code or to leave the program. If they don't want to leave, the user then enters the code to checkout the book of their choice and then gets a confirmation of the book they checked out.
 ![View the collection](/readme-images/collection.png)
 ![View the collection and borrow a book](/readme-images/checkout.png)
+The user then has to press the run program button to start a new session.
 
 <br>
 
 If the user decides to donate instead of checking out a book, they are first asked to enter the name of the book they want to donate. This name is then used to search the Google worksheet to see if it exists. If the book does not exist, the user is asked for the author's name and then the book is added to the collection. If the book does exist in the collection, the user is informed that the book exists and then has the option to view the collection or leave the program.
 ![Donation section](/readme-images/donation.png)
 ![Donation section but the book exists](/readme-images/donation-exists.png)
+
+The user then has to press the run program button to start a new session.
 
 <br>
 
@@ -104,6 +107,7 @@ In the future, I would like to add more functionality and features to the progra
 * More genres of books which can be organised in their respective sections so the user only looks at books that are relevant to them. 
 * Use an actual database to store books instead of a Google sheet for better data management.
 * Add a log to tracks users checkout and donation history to provide a more traditional library experience.
+* Allow user to restart the application without pressing the run program button.
 
 <br>
 
