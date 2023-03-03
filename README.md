@@ -42,68 +42,83 @@ The Bookkeeping service is a command line interface application that uses the He
 ------
 
 ## User Experience
-  ### Client Objective
-  The aim of this ficticious service is to provide users with the ability to share books using a central database. The user can then choose to view the books available in the database and can then choose to checkout a book of their choice. In the event that the user would like to donate a book, they can do so by donating a book of their choice to the central database. 
 
-  ### User Stories
-  #### New User Goals
-  * I want to find out what kind of books the service has.
-  * I want the abiliity to checkout a book from the database with minimal effort.
-  * I want the ability to donate a book to the database with minimal effort. 
-  * I want this app to be easy to use with clear instructions. 
+### Client Objective
+The aim of this ficticious service is to provide users with the ability to share books using a central database. The user can then choose to view the books available in the database and can then choose to checkout a book of their choice. In the event that the user would like to donate a book, they can do so by donating a book of their choice to the central database. 
+<br>
 
-    #### Returning User Goals 
-  * I want the database to be up to date with all the books it has.
-  * I want the program to tell me if the book I am donating is in the database or not.
+### User Stories
+#### New User Goals
 
-  ## Design 
-  ### Flowchart
-  ![Flowchart](/readme-images/bookkeeping.drawio%20.png)
-  Flow of how the program runs.
+* I want to find out what kind of books the service has.
+* I want the abiliity to checkout a book from the database with minimal effort.
+* I want the ability to donate a book to the database with minimal effort. 
+* I want this app to be easy to use with clear instructions. 
 
-  ## Features 
-  ### General features 
-  <br>
+<br>
 
-   The program starts with a welcome message. This area outlines what the service does and how the user can benefit from it. 
-  ![The welcome screen](/readme-images/welcome-screen.png)
+#### Returning User Goals 
 
-  <br>
+* I want the database to be up to date with all the books it has.
+* I want the program to tell me if the book I am donating is in the database or not.
 
-  The next section is where the user can decide what they would like to do. The user can either decide to view the book collection that already exists or they can choose to donate to the collection for others to see. 
-  ![Purpose of visit](/readme-images/purpose.png)
+<br>
 
-    <br>
+## Design 
 
-  If the user decides to view the collection by pressing 1, the user is then taken to the collection where they can view all the books that are currently available. The user here can see the code to checkout the book of their choice, the name of the book, and the author of the book. The user has two options: To check out a book using the code or to leave the program. If they don't want to leave, the user then enters the code to checkout the book of their choice and then gets a confirmation of the book they checked out.
-  ![View the collection](/readme-images/collection.png)
-  ![View the collection and borrow a book](/readme-images/checkout.png)
+### Flowchart
+![Flowchart](/readme-images/bookkeeping.drawio%20.png)
+Flow of how the program runs.
 
-    <br>
+<br>
 
-  If the user decides to donate instead of checking out a book, they are first asked to enter the name of the book they want to donate. This name is then used to search the Google worksheet to see if it exists. If the book does not exist, the user is asked for the author's name and then the book is added to the collection. If the book does exist in the collection, the user is informed that the book exists and then has the option to view the collection or leave the program.
-  ![Donation section](/readme-images/donation.png)
-  ![Donation section but the book exists](/readme-images/donation-exists.png)
+## Features 
+
+### General features 
+The program starts with a welcome message. This area outlines what the service does and how the user can benefit from it. 
+![The welcome screen](/readme-images/welcome-screen.png)
+
+<br>
+
+The next section is where the user can decide what they would like to do. The user can either decide to view the book collection that already exists or they can choose to donate to the collection for others to see. 
+![Purpose of visit](/readme-images/purpose.png)
+
+<br>
+
+If the user decides to view the collection by pressing 1, the user is then taken to the collection where they can view all the books that are currently available. The user here can see the code to checkout the book of their choice, the name of the book, and the author of the book. The user has two options: To check out a book using the code or to leave the program. If they don't want to leave, the user then enters the code to checkout the book of their choice and then gets a confirmation of the book they checked out.
+![View the collection](/readme-images/collection.png)
+![View the collection and borrow a book](/readme-images/checkout.png)
+
+<br>
+
+If the user decides to donate instead of checking out a book, they are first asked to enter the name of the book they want to donate. This name is then used to search the Google worksheet to see if it exists. If the book does not exist, the user is asked for the author's name and then the book is added to the collection. If the book does exist in the collection, the user is informed that the book exists and then has the option to view the collection or leave the program.
+![Donation section](/readme-images/donation.png)
+![Donation section but the book exists](/readme-images/donation-exists.png)
+
+<br>
 
 
-  ### Future Implementations
-  <br>
-  In the future, I would like to add more functionality and features to the program to improve overall user experience. Features like: 
-  * More genres of books which can be organised in their respective sections so the user only looks at books that are relevant to them. 
-  * Use an actual database to store books instead of a Google sheet for better data management.
-  * Add a log to tracks users checkout and donation history to provide a more traditional library experience.
+### Future Implementations
+
+In the future, I would like to add more functionality and features to the program to improve overall user experience. Features like: 
+* More genres of books which can be organised in their respective sections so the user only looks at books that are relevant to them. 
+* Use an actual database to store books instead of a Google sheet for better data management.
+* Add a log to tracks users checkout and donation history to provide a more traditional library experience.
 
 <br>
 
 ### Database
- ![Google Sheets database](/readme-images/sheets.png)
+
+![Google Sheets database](/readme-images/sheets.png)
  
- A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
+A Google sheet was used for this app to function properly. The sheet was used to keep track of all the books that were available for checkout and all the books that were donated were added to this worksheet. 
 <br>
 
 ## Technologies used
 ### Language used
 * The program was primarily created using **Python 3**. 
+
+<br>
 
 ### Libraries and Programs Used
 The following python libraries were used: 
@@ -160,7 +175,7 @@ The table below outlines tetsing done on different parts of the program. Testing
 |Bug|Solve|
 |-----|---------|
 |The google sheet was not being searched by python when user picked a number. The code would return only location or would just not parse. | Convert the input to RegEx when working with find(). To get the values in that row, use row.values, using the var where find parameter was saved to pull value from that row. |
-|The purpose function was not using the return value from user_input once the functions were added to the main function. | Add an argument to purpose function that takes a value and add a user variable in the main function with a value of user_input which is then passed to purpose in the main function.|
+|The purpose function was not using the return value from user_input once the functions were added to the main function. | Store the return value of user_input in a user variable which is in the main function. Pass that variable as an argument in the purpose function.|
 |The name variable was not accepting valid input for names unless users entered their full name. | Remove the isalnum() check and only keep the check for not entering names.|
 |The program would crash if the user input was invalid. | Add try and except statements.|
 |The colection data was not presented properly on Heroku. | Switch to tabulate and use maxcols. |
@@ -168,6 +183,8 @@ The table below outlines tetsing done on different parts of the program. Testing
 |If the input, when checking out a book was wrong, it would lead to an AttributeError. | One of the elif statements was in the wrong code block and the input(along with its RegEx conversion) was added to the except block again.|
 |The checkout code would be duplicated if there were more books that were checkedout. | Add a + 5 to the variable which takes the length of the dataset and adds 5 to give a checkout code. This is not a perfect solution but for the programs purpose and time constraints, this solution is valid.|
 |Character length exceeding 80 characters. | Use string concatenation and break text up.|
+
+<br>
 
 ### PEP8 Validation
  ![PEP8 validation](/readme-images/pep8.png)
@@ -215,7 +232,8 @@ The table below outlines tetsing done on different parts of the program. Testing
 * [Tabulate](https://pypi.org/project/tabulate/) for formatting the tables.
 * [Time](https://docs.python.org/3/library/time.html) for using sleep. 
 * W3Schools for various python methods. 
-* [StackOverflow](https://stackoverflow.com/questions/8949252/why-do-i-get-attributeerror-nonetype-object-has-no-attribute-something) for helping with None. 
+* [StackOverflow](https://stackoverflow.com/questions/8949252/why-do-i-get-attributeerror-nonetype-object-has-no-attribute-something) for helping with None.
+<br> 
 
 ### Acknowledgements
 * Adegbenga Adeye, my CI mentor for feedback and testing the program with me. 
